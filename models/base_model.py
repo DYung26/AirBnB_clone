@@ -3,7 +3,7 @@
 Module: base_model.py
 This module defines the BaseModel class.
 """
-from uuid import uuid4
+import uuid
 from datetime import datetime
 
 
@@ -12,19 +12,30 @@ class BaseModel:
     BaseModel class represents the base model for all other classes.
     """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """ Initializes a new instance of the BaseModel class.
 
         Attributes:
-            id (str): A universally unique identifier for the instance.
-            created_at (datetime): The date and time when the instance was
-                created.
-            updated_at (datetime): The date and time when the instance was
-                last updated.
+            arg (tuple): arguments
+            kwargs (dict): keywords arguments
         """
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if len(kwargs) == 0:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+        else:
+            for key, value in kwargs.items():
+                if key == '__class__':
+                    continue
+                if key == 'created_at':
+                    setattr(self, 'created_at', datetime.strptime(
+                        value, '%Y-%m-%dT%H:%M:%S.%f'))
+                    continue
+                if key == 'updated_at':
+                    setattr(self, 'updated_at', datetime.strptime(
+                        value, '%Y-%m-%dT%H:%M:%S.%f'))
+                    continue
+                setattr(self, key, value)
 
     def __str__(self):
         """ Returns a user-friendly string representation of the BaseModel
