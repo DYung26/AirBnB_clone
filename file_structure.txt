@@ -1,0 +1,14 @@
+AirBnB_clone
+|-- models
+	|-- __init__.py
+	|-- engine
+	|-- __init__.py
+		|-- file_storage.py
+	|-- base_model.py
+|-- tests
+	|-- __init__.py
+	|-- test_engine
+		|-- __init__.py
+		|-- test_file_storage.py
+	|-- test_base_model.py
+|-- console.py
