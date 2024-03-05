@@ -87,8 +87,6 @@ class HBNBCommand(cmd.Cmd):
         id = args[1]
         key = f"{class_name}.{id}"
 
-        # file_storage_instance = FileStorage()
-
         if key not in storage.all():
             print('** no instance found **')
         else:
