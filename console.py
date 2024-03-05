@@ -126,15 +126,13 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
 
-            if isinstance(obj, HBNBCommand.all_classes[class_name]):
-                instances = [str(obj) for obj in storage.all().values()]
-        else:
-            instances = [str(obj) for obj in storage.all().values()]
-
-        if instances:
+            instances = [
+                str(obj) for obj in storage.all().values()
+                if isinstance(obj, HBNBCommand.all_classes[class_name])]
             print(instances)
         else:
-            print('[]')
+            instances = [str(obj) for obj in storage.all().values()]
+            print(instances)
 
 
 if __name__ == '__main__':
