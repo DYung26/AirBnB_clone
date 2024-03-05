@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 import cmd
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     all_classes = {
-        'BaseModel': BaseModel,
-        'FileStorage': FileStorage
+        'BaseModel': BaseModel
     }
 
     def do_create(self, arg):
@@ -62,12 +61,12 @@ class HBNBCommand(cmd.Cmd):
         id = args[1]
         key = f"{class_name}.{id}"
 
-        file_storage_instance = FileStorage()
+        # file_storage_instance = FileStorage()
 
-        if key not in file_storage_instance.all():
+        if key not in storage.all():
             print('** no instance found **')
         else:
-            print(file_storage_instance.all()[key])
+            print(storage.all()[key])
 
 
 if __name__ == '__main__':
