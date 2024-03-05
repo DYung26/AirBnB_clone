@@ -50,6 +50,26 @@ class HBNBCommand(cmd.Cmd):
             return
         del all_objs[key]
 
+    def do_all(self, line):
+        """do_all Prints all objects
+
+            Usage: all or all <ModelName>
+        Args:
+            line (str): filter for objects to return
+        """
+        if line and line not in HBNBCommand.all_classes:
+            print("** class doesn't exist ")
+            return
+        all_objs = storage.all()
+        if line:
+            # We'll test this a lot better later when more classes are added
+            to_print = [str(v) for k, v in all_objs.items()
+                        if k.split('.')[0] == line]
+            print(to_print)
+        else:
+            to_print = [str(v) for k, v in all_objs.items()]
+            print(to_print)
+
     def do_EOF(self, line):
         """Handle End-of-File (EOF) input"""
         return True
