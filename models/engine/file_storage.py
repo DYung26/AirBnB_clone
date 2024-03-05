@@ -50,16 +50,13 @@ class FileStorage:
         """
         Reloads objects from the JSON file into the storage.
         """
-        # The following imports are unused but necessary to access
-        # them in dict returned from global()
-        from models.base_model import BaseModel  # noqa  # pylint: disable=unused-import disable=import-outside-toplevel
+        from models.base_model import BaseModel
         cls_dicts = {
             "BaseModel": BaseModel
         }
         try:
             with open(self.__file_path, mode="r", encoding="utf-8") as f:
                 data = json.loads(f.read())
-            print("data", data, "end")
             for key, value in data.items():
                 self.__objects[key] = cls_dicts[value['__class__']](**value)
         except FileNotFoundError:
