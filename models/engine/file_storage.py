@@ -53,10 +53,20 @@ class FileStorage:
         # pylint: disable=import-outside-toplevel
         from models.base_model import BaseModel
         from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
 
         cls_dicts = {
             "BaseModel": BaseModel,
-            "User": User
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
         }
         try:
             with open(self.__file_path, mode="r", encoding="utf-8") as f:
