@@ -50,9 +50,13 @@ class FileStorage:
         """
         Reloads objects from the JSON file into the storage.
         """
+        # pylint: disable=import-outside-toplevel
         from models.base_model import BaseModel
+        from models.user import User
+
         cls_dicts = {
-            "BaseModel": BaseModel
+            "BaseModel": BaseModel,
+            "User": User
         }
         try:
             with open(self.__file_path, mode="r", encoding="utf-8") as f:
@@ -60,4 +64,6 @@ class FileStorage:
             for key, value in data.items():
                 self.__objects[key] = cls_dicts[value['__class__']](**value)
         except FileNotFoundError:
+            pass
+        except json.decoder.JSONDecodeError:
             pass
