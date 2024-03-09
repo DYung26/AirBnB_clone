@@ -6,6 +6,7 @@ This module defines the Place class.
 
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
     """
     Place class representing a place for accommodation.
@@ -17,7 +18,8 @@ class Place(BaseModel):
         description (str): A description of the place.
         number_rooms (int): The number of rooms in the place.
         number_bathrooms (int): The number of bathrooms in the place.
-        max_guest (int): The maximum number of guests the place can accommodate.
+        max_guest (int): The maximum number of guests the place can
+            accommodate.
         price_by_night (int): The price per night for staying at the place.
         latitude (float): The latitude coordinate of the place.
         longitude (float): The longitude coordinate of the place.
@@ -37,4 +39,3 @@ class Place(BaseModel):
     latitude = 0.0
     longitude = 0.0
     amenity_ids = []
-

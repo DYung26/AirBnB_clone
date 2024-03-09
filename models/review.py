@@ -6,6 +6,7 @@ This module defines the Review class.
 
 from models.base_model import BaseModel
 
+
 class Review(BaseModel):
     """
     Review class representing a user's review for a place.
@@ -21,4 +22,3 @@ class Review(BaseModel):
     place_id = ""
     user_id = ""
     text = ""
-
