@@ -10,6 +10,8 @@ from models import storage
 
 class BaseModel:
     """
+    BaseModel
+
     BaseModel class represents the base model for all other classes.
     """
 
