@@ -136,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
         if attr_name in ['id', 'created_at', 'updated_at']:
             return
         try:
-            setattr(model_obj, attr_name, json.loads(json.dumps(attr_value)))
+            setattr(model_obj, attr_name, json.loads(f"{attr_value}"))
             model_obj.save()
         except json.JSONDecodeError:
             return
