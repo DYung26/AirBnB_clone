@@ -160,7 +160,7 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             attr_value = parse_attr_value(attr_value)
-            setattr(model_obj, attr_name, attr_value))
+            setattr(model_obj, attr_name, attr_value)
             model_obj.save()
         except json.JSONDecodeError:
             return
