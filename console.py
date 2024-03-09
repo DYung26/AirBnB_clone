@@ -130,14 +130,11 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 3:
             print("** value missing **")
             return
-        model_name = args[0]
-        model_id = args[1]
+        model_obj = all_objs[key]
         attr_name = args[2]
         attr_value = args[3]
         if attr_name in ['id', 'created_at', 'updated_at']:
             return
-        key = model_name + "." + model_id
-        model_obj = all_objs[key]
         try:
             setattr(model_obj, attr_name, json.loads(
                 '"' + attr_value + '"'))
