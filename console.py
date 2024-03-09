@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+Module: console.py
+This module defines the HBNBCommand class,
+a command-line interpreter for managing AirBnB objects.
+"""
 import cmd
 from models.base_model import BaseModel
 from models.user import User
@@ -11,16 +16,48 @@ from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
+    """
+    HBNBCommand class: Command-line interpreter for managing AirBnB objects.
+
+    Attributes:
+        prompt (str): The command prompt displayed to the user.
+        all_classes (dict):
+            A dictionary mapping class names to their corresponding classes.
+
+    Methods:
+        do_create(self, line):
+            Creates a new model instance of the class passed as an argument.
+        do_destroy(self, line):
+            Deletes a model instance based on class name and ID.
+        do_EOF(self, line): Handles End-of-File (EOF) input.
+        do_quit(self, line):
+            Quits the command interpreter and exits the program.
+        emptyline(self): Handles an empty line input.
+        do_show(self, line):
+            Displays the string representation of an instance
+            based on class name and ID.
+        do_all(self, line):
+            Prints all string representations of instances based on class name.
+
+    Usage:
+        Execute this script to launch the AirBnB command-line interpreter.
+    """
     prompt = "(hbnb) "
     all_classes = {
         "BaseModel": BaseModel,
-        "User": User
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
     }
 
     def do_create(self, line):
         """Creates a new model instance of the class passed as arg
 
-            Usage: create <ModelName>
+            Usage:
+                `create <ModelName>`
         """
         if not line:
             print('** class name missing **')
@@ -32,11 +69,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_destroy(self, line):
-        """do_destroy deletes a model instance
+        """do_destroy deletes a model instance based on class name and ID.
 
-            Usage: destroy <ModelName> <ModelId>
+        Usage: `destroy <ModelName> <ModelId>`
         Args:
-            line (str): model name and model id
+            line (str): model name and model ID.
         """
         args = line.split()
         if len(args) == 0:
