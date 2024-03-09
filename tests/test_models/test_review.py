@@ -2,7 +2,8 @@
 """
 Test module for Review class
 
-This module contains a series of unit tests to validate the behavior of the Review class.
+This module contains a series of unit tests to validate
+the behavior of the Review class.
 
 Attributes:
     TestReview (unittest.TestCase): The test case class for Review.
@@ -11,6 +12,7 @@ Attributes:
 import unittest
 import time
 from models.review import Review
+
 
 class TestReview(unittest.TestCase):
     """
@@ -72,6 +74,7 @@ class TestReview(unittest.TestCase):
                 self.assertEqual(value, self.review.__class__.__name__)
             else:
                 self.assertTrue(hasattr(self.review, key))
+
 
 if __name__ == '__main__':
     unittest.main()
