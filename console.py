@@ -199,7 +199,7 @@ class HBNBCommand(cmd.Cmd):
 
             instances = [
                 str(obj) for obj in storage.all().values()
-                if isinstance(obj, HBNBCommand.all_classes[class_name])]
+                if obj.__class__.__name__ == class_name]
             print(instances)
         else:
             instances = [str(obj) for obj in storage.all().values()]
