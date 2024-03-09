@@ -158,6 +158,65 @@ class HBNBCommand(cmd.Cmd):
             instances = [str(obj) for obj in storage.all().values()]
             print(instances)
 
+    def do_update(self, line):
+        """update updates a model instance
+
+            Usage: update <ModelName> <ModelId> <attribute_name>
+            <attribute_value>
+        Args:
+            line (str): model name, model id, attribute name, attribute value
+        """
+        errors = {
+            0: "** class name missing **",
+            1: "** instance id missing **",
+            2: "** attribute name missing **",
+            3: "** value missing **"
+        }
+        args = line.split()
+        if len(args) == 0:
+            print(errors[0])
+            return False
+        model_name = args[0]
+        if model_name not in HBNBCommand.all_classes:
+            print("** class doesn't exist **")
+            return False
+        if len(args) == 1:
+            print(errors[1])
+            return False
+        model_id = args[1]
+        key = model_name + "." + model_id
+        all_objs = storage.all()
+        if key not in all_objs:
+            print("** no instance found **")
+            return False
+        if len(args) < 4:
+            print(errors[len(args)])
+            return False
+        model_name = args[0]
+        model_id = args[1]
+        attr_name = args[2]
+        attr_value = args[3]
+        if attr_name in ['id', 'created_at', 'updated_at']:
+            pass
+        else:
+            key = model_name + "." + model_id
+            model_obj = all_objs[key]
+            # if attr_name not in vars(HBNBCommand.all_classes[model_name]):
+            #     # print(f"{attr_name} not a class attribute")
+            #     return
+            # We could replace this attr_type line with json.loads(attr_value)
+            # to convert it to original type
+            # attr_type = type(vars(HBNBCommand.all_classes[model_name])
+            # [attr_name])
+            # setattr(model_obj, attr_name, attr_type(attr_value))
+            try:
+                setattr(model_obj, attr_name, json.loads(
+                    '"' + attr_value + '"'))
+                model_obj.save()
+            except json.JSONDecodeError:
+                return False
+        return True
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
