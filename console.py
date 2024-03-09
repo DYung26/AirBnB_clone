@@ -6,6 +6,7 @@ a command-line interpreter for managing AirBnB objects.
 """
 import cmd
 import json
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -216,6 +217,26 @@ class HBNBCommand(cmd.Cmd):
                 model_obj.save()
             except json.JSONDecodeError:
                 return False
+        return True
+
+    def do_dict_update(self, line):
+        # print(line)
+        args = line.split()
+        if len(args) <= 4:
+            return self.do_update(line)
+        model_name = args[0]
+        model_id = args[1]
+        rest = args[2:]
+        while len(rest) > 0:
+            print(rest)
+            my_line = model_name + " " + model_id + " " + " ".join(rest)
+            print(my_line)
+            valid = self.do_update(
+                model_name + " " + model_id + " " + " ".join(rest))
+            print(valid)
+            if not valid:
+                return False
+            rest = rest[2:]
         return True
 
 
