@@ -2,7 +2,8 @@
 """
 Test module for City class
 
-This module contains a series of unit tests to validate the behavior of the City class.
+This module contains a series of unit tests to validate
+the behavior of the City class.
 
 Attributes:
     TestCity (unittest.TestCase): The test case class for City.
@@ -11,6 +12,7 @@ Attributes:
 import unittest
 import time
 from models.city import City
+
 
 class TestCity(unittest.TestCase):
     """
@@ -69,6 +71,7 @@ class TestCity(unittest.TestCase):
                 self.assertEqual(value, self.city.__class__.__name__)
             else:
                 self.assertTrue(hasattr(self.city, key))
+
 
 if __name__ == '__main__':
     unittest.main()
