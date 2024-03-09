@@ -135,10 +135,12 @@ class HBNBCommand(cmd.Cmd):
         attr_value = args[3]
         if attr_name in ['id', 'created_at', 'updated_at']:
             return
+        # print(f"Before Update: {model_obj.to_dict()}")
         try:
-            setattr(model_obj, attr_name, json.loads(
-                '"' + attr_value + '"'))
+            setattr(model_obj, attr_name, attr_value)
+            # json.loads('"' + attr_value + '"'))
             model_obj.save()
+            # print(f"After Update: {model_obj.to_dict()}")
         except json.JSONDecodeError:
             return
         return
