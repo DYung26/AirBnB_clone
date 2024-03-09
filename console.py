@@ -141,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
         try:
             setattr(model_obj, attr_name, json.loads(
                 '"' + attr_value + '"'))
-            model_obj.save()
+            storage.save()
         except json.JSONDecodeError:
             return
 
