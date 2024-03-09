@@ -135,12 +135,9 @@ class HBNBCommand(cmd.Cmd):
         attr_value = args[3]
         if attr_name in ['id', 'created_at', 'updated_at']:
             return
-        # print(f"Before Update: {model_obj.to_dict()}")
         try:
-            setattr(model_obj, attr_name, attr_value)
-            # json.loads('"' + attr_value + '"'))
+            setattr(model_obj, attr_name, json.loads('"' + attr_value + '"'))
             model_obj.save()
-            # print(f"After Update: {model_obj.to_dict()}")
         except json.JSONDecodeError:
             return
         return
@@ -204,6 +201,97 @@ class HBNBCommand(cmd.Cmd):
         else:
             instances = [str(obj) for obj in storage.all().values()]
             print(instances)
+
+    def parseline(self, line):
+        """parseline overiding parent method to allow more dynamic inputs
+
+        Args:
+            line (string): stdin input
+
+        Returns:
+            (tuple): (command, args, line)
+        """
+        self.current_line = line
+        pattern = r"(\b\w+)\.(\w+)\(([^()]*)\)"
+        matches = re.findall(pattern, line)
+        if matches and len(matches[0]) == 3:
+            method_name = matches[0][1]
+            model_name = matches[0][0]
+            arguments = ""
+            pattern = r"{[^{}]*}"
+            match = re.search(pattern, line)
+            if match:
+                pre = re.split(r",\s*", matches[0][2])
+                try:
+                    a = json.loads(match.group().replace("'", '"'))
+                    arr = []
+                    for k, v in a.items():
+                        arr.append(k)
+                        arr.append(str(v).strip())
+                    arguments = pre[0].replace('"', "") + " " + " ".join(arr)
+                    method_name = "dict_" + method_name
+                except json.decoder.JSONDecodeError:
+                    return cmd.Cmd.parseline(self, line)
+            else:
+                pre = re.split(r",\s*", matches[0][2])
+                for item in pre:
+                    if bool(re.match(r'^("[^"]*"|\'[^\']*\')$', item)):
+                        arguments += " " + item.replace("'", "").replace(
+                            '"', "")
+                    else:
+                        cmd.Cmd.parseline(self, line)
+            combined = (
+                method_name.strip()
+                + " " +
+                model_name.strip()
+                + " " +
+                arguments.strip()
+            )
+            return (None, None, combined)
+        ret = cmd.Cmd.parseline(self, line)
+        return ret
+
+    def default(self, line):
+        """default overiding parent default method
+
+        Args:
+            line (str): Input from parseline
+
+        Returns: None
+        """
+        args = line.split(' ')
+        if len(args) < 3:
+            return cmd.Cmd.default(self, self.current_line)
+        model_method = args[0]
+        final_args = args[1:]
+        try:
+            _cls = getattr(self, 'do_' + model_method)
+            _cls(" ".join(final_args))
+        except AttributeError:
+            return cmd.Cmd.default(self, self.current_line)
+        return None
+
+    def do_dict_update(self, line):
+        """do_dict_update handles arguments passed as a dictionary
+
+        Args:
+            line (str): parsed input
+
+        Returns:
+            bool: True if successful and False if not
+        """
+        args = line.split()
+        if len(args) <= 4:
+            self.do_update(line)
+            return
+        model_name = args[0]
+        model_id = args[1]
+        rest = args[2:]
+        while len(rest) > 0:
+            my_line = model_name + " " + model_id + " " + " ".join(rest)
+            self.do_update(my_line)
+            rest = rest[2:]
+        return
 
 
 if __name__ == '__main__':
