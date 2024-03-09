@@ -61,11 +61,13 @@ class HBNBCommand(cmd.Cmd):
             Usage:
                 `create <ModelName>`
         """
-        if not line:
-            print('** class name missing **')
+        args = line.split()
+        if not args or not args[0]:
+            print("** class name missing **")
             return
         try:
-            new_instance = HBNBCommand.all_classes[line]()
+            new_instance = HBNBCommand.all_classes[args[0]]()
+            new_instance.save()
             print(new_instance.id)
         except KeyError:
             print("** class doesn't exist **")
@@ -95,6 +97,53 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
         del all_objs[key]
+        storage.save()
+
+    def do_update(self, line):
+        """update updates a model instance
+
+            Usage: update <ModelName> <ModelId> <attribute_name>
+            <attribute_value>
+        Args:
+            line (str): model name, model id, attribute name, attribute value
+        """
+        args = line.split()
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        model_name = args[0]
+        if model_name not in HBNBCommand.all_classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) == 1:
+            print("** instance id missing **")
+            return
+        model_id = args[1]
+        key = model_name + "." + model_id
+        all_objs = storage.all()
+        if key not in all_objs:
+            print("** no instance found **")
+            return
+        if len(args) == 2:
+            print("** attribute name missing **")
+            return
+        if len(args) == 3:
+            print("** value missing **")
+            return
+        model_name = args[0]
+        model_id = args[1]
+        attr_name = args[2]
+        attr_value = args[3]
+        if attr_name in ['id', 'created_at', 'updated_at']:
+            return
+        key = model_name + "." + model_id
+        model_obj = all_objs[key]
+        try:
+            setattr(model_obj, attr_name, json.loads(
+                '"' + attr_value + '"'))
+            model_obj.save()
+        except json.JSONDecodeError:
+            return
 
     def do_EOF(self, line):
         """Handle End-of-File (EOF) input"""
@@ -117,14 +166,10 @@ class HBNBCommand(cmd.Cmd):
             print('** class name missing **')
             return
 
-        if len(args) < 2:
-            print("** instance id missing **")
-            return
-
         class_name = args[0]
         if class_name not in HBNBCommand.all_classes:
-            print("** class doesn't exist **")
-            return
+                print("** class doesn't exist **")
+                return
 
         if len(args) < 2:
             print("** instance id missing **")
