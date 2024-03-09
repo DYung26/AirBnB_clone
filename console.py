@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+1ff1d1d1-15b1-4d49-957c-9cd2132f99821ff1d1d1-15b1-4d49-957c-9cd2132f99821ff1d1d1-15b1-4d49-957c-9cd2132f99821ff1d1d1-15b1-4d49-957c-9cd2132f99821ff1d1d1-15b1-4d49-957c-9cd2132f99821ff1d1d1-15b1-4d49-957c-9cd2132f99821ff1d1d1-15b1-4d49-957c-9cd2132f99821ff1d1d1-15b1-4d49-957c-9cd2132f99821ff1d1d1-15b1-4d49-957c-9cd2132f99821ff1d1d1-15b1-4d49-957c-9cd2132f9982#!/usr/bin/python3
 """
 Module: console.py
 This module defines the HBNBCommand class,
@@ -222,23 +222,23 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if len(args) == 0:
             print(errors[0])
-            return False
+            return
         model_name = args[0]
         if model_name not in HBNBCommand.all_classes:
             print("** class doesn't exist **")
-            return False
+            return
         if len(args) == 1:
             print(errors[1])
-            return False
+            return
         model_id = args[1]
         key = model_name + "." + model_id
         all_objs = storage.all()
         if key not in all_objs:
             print("** no instance found **")
-            return False
+            return
         if len(args) < 4:
             print(errors[len(args)])
-            return False
+            return
         model_name = args[0]
         model_id = args[1]
         attr_name = args[2]
@@ -248,41 +248,13 @@ class HBNBCommand(cmd.Cmd):
         else:
             key = model_name + "." + model_id
             model_obj = all_objs[key]
-            # if attr_name not in vars(HBNBCommand.all_classes[model_name]):
-            #     # print(f"{attr_name} not a class attribute")
-            #     return
-            # We could replace this attr_type line with json.loads(attr_value)
-            # to convert it to original type
-            # attr_type = type(vars(HBNBCommand.all_classes[model_name])
-            # [attr_name])
-            # setattr(model_obj, attr_name, attr_type(attr_value))
             try:
                 setattr(model_obj, attr_name, json.loads(
                     '"' + attr_value + '"'))
                 model_obj.save()
             except json.JSONDecodeError:
-                return False
-        return True
-
-    def do_dict_update(self, line):
-        # print(line)
-        args = line.split()
-        if len(args) <= 4:
-            return self.do_update(line)
-        model_name = args[0]
-        model_id = args[1]
-        rest = args[2:]
-        while len(rest) > 0:
-            print(rest)
-            my_line = model_name + " " + model_id + " " + " ".join(rest)
-            print(my_line)
-            valid = self.do_update(
-                model_name + " " + model_id + " " + " ".join(rest))
-            print(valid)
-            if not valid:
-                return False
-            rest = rest[2:]
-        return True
+                return
+        return
 
 
 if __name__ == '__main__':
