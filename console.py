@@ -17,6 +17,29 @@ from models.review import Review
 from models import storage
 
 
+def parse_attr_value(attr_value):
+    """parse_attr_value Parses JSON like data to appropriate type
+
+    Args:
+        attr_value (str): data to be parsed
+
+    Returns:
+        (str, int, float, bool): _description_
+    """
+    try:
+        return json.loads(attr_value)
+    except json.JSONDecodeError:
+        if attr_value.lower() in ['true', 'false']:
+            return attr_value.lower() == 'true'
+        try:
+            return int(attr_value)
+        except ValueError:
+            try:
+                return float(attr_value)
+            except ValueError:
+                return attr_value
+
+
 class HBNBCommand(cmd.Cmd):
     """
     HBNBCommand class: Command-line interpreter for managing AirBnB objects.
@@ -136,7 +159,8 @@ class HBNBCommand(cmd.Cmd):
         if attr_name in ['id', 'created_at', 'updated_at']:
             return
         try:
-            setattr(model_obj, attr_name, json.loads(f"{attr_value}"))
+            attr_value = parse_attr_value(attr_value)
+            setattr(model_obj, attr_name, attr_value))
             model_obj.save()
         except json.JSONDecodeError:
             return
