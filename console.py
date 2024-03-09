@@ -22,11 +22,13 @@ class HBNBCommand(cmd.Cmd):
 
             Usage: create <ModelName>
         """
-        if not line:
-            print('** class name missing **')
+        args = line.split()
+        if not args or not args[0]:
+            print("** class name missing **")
             return
         try:
-            new_instance = HBNBCommand.all_classes[line]()
+            new_instance = HBNBCommand.all_classes[args[0]]()
+            new_instance.save()
             print(new_instance.id)
         except KeyError:
             print("** class doesn't exist **")
@@ -56,6 +58,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
         del all_objs[key]
+        storage.save()
 
     def do_update(self, line):
         """update updates a model instance
@@ -93,16 +96,15 @@ class HBNBCommand(cmd.Cmd):
         attr_name = args[2]
         attr_value = args[3]
         if attr_name in ['id', 'created_at', 'updated_at']:
-            # print(f"{attr_name} can not be updated")
             return
         key = model_name + "." + model_id
         model_obj = all_objs[key]
-        if attr_name not in model_obj.__dict__:
-            # print(f"{attr_name} not a class attribute")
+        try:
+            setattr(model_obj, attr_name, json.loads(
+                '"' + attr_value + '"'))
+            model_obj.save()
+        except json.JSONDecodeError:
             return
-        attr_type = type(model_obj.__dict__[attr_name])
-        setattr(model_obj, attr_name, attr_type(attr_value))
-        model_obj.save()
 
     def do_EOF(self, line):
         """Handle End-of-File (EOF) input"""
