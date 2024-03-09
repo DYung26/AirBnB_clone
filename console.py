@@ -293,6 +293,25 @@ class HBNBCommand(cmd.Cmd):
             rest = rest[2:]
         return
 
+    def do_count(self, line):
+        """Counts all instances of class class name.
+
+        Usage:
+            `<ModelName>all()
+        """
+        args = line.split()
+
+        if args:
+            class_name = args[0]
+            if class_name not in HBNBCommand.all_classes:
+                print("** class doesn't exist **")
+                return
+
+            instances = [
+                str(obj) for obj in storage.all().values()
+                if obj.__class__.__name__ == class_name]
+            print(len(instances))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
