@@ -2,7 +2,8 @@
 """
 Test module for Amenity class
 
-This module contains a series of unit tests to validate the behavior of the Amenity class.
+This module contains a series of unit tests to
+validate the behavior of the Amenity class.
 
 Attributes:
     TestAmenity (unittest.TestCase): The test case class for Amenity.
@@ -11,6 +12,7 @@ Attributes:
 import unittest
 import time
 from models.amenity import Amenity
+
 
 class TestAmenity(unittest.TestCase):
     """
@@ -66,6 +68,7 @@ class TestAmenity(unittest.TestCase):
                 self.assertEqual(value, self.amenity.__class__.__name__)
             else:
                 self.assertTrue(hasattr(self.amenity, key))
+
 
 if __name__ == '__main__':
     unittest.main()
