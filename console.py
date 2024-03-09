@@ -141,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
             model_obj.save()
         except json.JSONDecodeError:
             return
-    return
+        return
 
     def do_EOF(self, line):
         """Handle End-of-File (EOF) input"""
