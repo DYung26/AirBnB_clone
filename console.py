@@ -5,6 +5,7 @@ This module defines the HBNBCommand class,
 a command-line interpreter for managing AirBnB objects.
 """
 import cmd
+import json
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
