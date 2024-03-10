@@ -8,12 +8,9 @@ The repository is organized as follows:
 
 `models/`: Contains Python classes representing different data models (e.g., User, Place, Review).
 
-`views/`: Includes the web interface for interacting with the application.
-
-`tests/`: Contains unit tests to verify the functionality of the code.
-
-`console.py`: A command-line interface (CLI) for managing the application.
-
+`views/`: Includes the web interface for interacting with the application.  
+`tests/`: Contains unit tests to verify the functionality of the code.  
+`console.py`: A command-line interface (CLI) for managing the application.  
 `README.md`: This file.
 
 ## Getting Started
@@ -40,3 +37,6 @@ python3 console.py
 ## Authors
 - OYEKUNLE DANIEL
 - MARZOUQ ADEBAYO
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
