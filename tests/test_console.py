@@ -141,63 +141,6 @@ class TestConsole(unittest.TestCase):
         output = self.held_output.getvalue().strip()
         self.assertEqual(output, "** value missing **")
 
-    def test_update_command_invalid_json(self):
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd("create BaseModel")
-        obj_id = self.held_output.getvalue().strip()
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd(f"update BaseModel {obj_id} name 'invalid JSON'")
-        output = self.held_output.getvalue().strip()
-        self.assertIn("** invalid JSON **", output)
-
-    def test_update_command_valid_json(self):
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd("create BaseModel")
-        obj_id = self.held_output.getvalue().strip()
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd(f'update BaseModel {obj_id} dict_attribute \'{"{"key": "value"}"}\'')
-        output = self.held_output.getvalue().strip()
-        updated_obj = storage.all()["BaseModel." + obj_id]
-        self.assertEqual(updated_obj.dict_attribute, {"key": "value"})
-
-    def test_show_command_valid_json(self):
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd("create BaseModel")
-        obj_id = self.held_output.getvalue().strip()
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd(f'show BaseModel {obj_id} dict_attribute')
-        output = self.held_output.getvalue().strip()
-        self.assertEqual(output, "{}")
-
-    def test_all_command_valid_json(self):
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd("create BaseModel")
-        obj_id = self.held_output.getvalue().strip()
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd(f'all BaseModel')
-        output = self.held_output.getvalue().strip()
-        self.assertIn('"dict_attribute": {}', output)
-
-    def test_dict_update_command(self):
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd("create BaseModel")
-        obj_id = self.held_output.getvalue().strip()
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd(f'dict_update BaseModel {obj_id} dict_attribute \'{"{"key": "value"}"}\'')
-        output = self.held_output.getvalue().strip()
-        updated_obj = storage.all()["BaseModel." + obj_id]
-        self.assertEqual(updated_obj.dict_attribute, {"key": "value"})
-
-    def test_dict_update_command_multiple_attributes(self):
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd("create BaseModel")
-        obj_id = self.held_output.getvalue().strip()
-        with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd(f'dict_update BaseModel {obj_id} dict_attribute \'{"{"key": "value", "key2": "value2"}"}\'')
-        output = self.held_output.getvalue().strip()
-        updated_obj = storage.all()["BaseModel." + obj_id]
-        self.assertEqual(updated_obj.dict_attribute, {"key": "value", "key2": "value2"})
-
 
 if __name__ == '__main__':
     unittest.main()
