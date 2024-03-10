@@ -5,6 +5,7 @@ The AirBnB clone is a simplified version of the popular online accommodation pla
 AirBnB Clone Command Interpreter - This is the foundational command interpreter for managing AirBnB objects, serving as the initial step in building the full AirBnB web application.
 ## Repository Structure
 The repository is organized as follows:
+
 `models/`: Contains Python classes representing different data models (e.g., User, Place, Review).
 `views/`: Includes the web interface for interacting with the application.
 `tests/`: Contains unit tests to verify the functionality of the code.
