@@ -16,6 +16,20 @@ The repository is organized as follows:
 
 `README.md`: This file.
 
+## Getting Started
+To run the AirBnB clone, follow these steps:
+
+- Clone the Repository:
+```
+git clone https://github.com/DYung26/AirBnB_clone.git
+```
+- Navigate to the Project Directory:
+```
+cd AirBnB_clone
+```
+- Run the CLI:
+```python console.py```
+
 ## Authors
 - OYEKUNLE DANIEL
 - MARZOUQ ADEBAYO
