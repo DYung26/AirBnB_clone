@@ -44,9 +44,10 @@ Example usage:
 ```
 # Create a new Place object
 create BaseModel
-
+```
+```
 # Show details of a specific User
-show User <id>
+show BaseModel <id>
 ```
 For a complete list of commands and options, refer to the documentation or run the CLI with the `--help` option.
 
