@@ -51,7 +51,7 @@ python -m unittest discover tests
 5. Submit a pull request.
 
 ## Authors
-- OYEKUNLE DANIEL
+- DANIEL OYEKUNLE
 - MARZOUQ ADEBAYO
 
 ## License
