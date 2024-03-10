@@ -34,7 +34,7 @@ python3 console.py
 
 ## Testing
 To run the tests, use the following command:
-```bash
+```
 # Python 2
 python -m unittest discover tests
 ```
