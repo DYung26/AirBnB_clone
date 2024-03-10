@@ -7,7 +7,6 @@ AirBnB Clone Command Interpreter - This is the foundational command interpreter 
 The repository is organized as follows:
 
 `models/`: Contains Python classes representing different data models (e.g., User, Place, Review).  
-`views/`: Includes the web interface for interacting with the application.  
 `tests/`: Contains unit tests to verify the functionality of the code.  
 `console.py`: A command-line interface (CLI) for managing the application.  
 `README.md`: This file.
@@ -38,8 +37,19 @@ To run the tests, use the following command:
 ```bash
 # Python 2
 python -m unittest discover tests
+```
+```
 # Python3
 python -m unittest discover tests
+```
+
+```markdown
+## Contributing
+1. Fork the repository.
+2. Create a new branch for your feature: `git checkout -b feature/new-feature`
+3. Commit your changes: `git commit -am 'Add new feature'`
+4. Push to the branch: `git push origin feature/new-feature`
+5. Submit a pull request.
 ```
 
 ## Authors
