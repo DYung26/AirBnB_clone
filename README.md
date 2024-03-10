@@ -28,7 +28,14 @@ git clone https://github.com/DYung26/AirBnB_clone.git
 cd AirBnB_clone
 ```
 - Run the CLI:
-```python console.py```
+```
+# For Python 2
+python console.py
+```
+```
+# For Python 3
+python3 console.py
+```
 
 ## Authors
 - OYEKUNLE DANIEL
