@@ -7,10 +7,15 @@ AirBnB Clone Command Interpreter - This is the foundational command interpreter 
 The repository is organized as follows:
 
 `models/`: Contains Python classes representing different data models (e.g., User, Place, Review).
+
 `views/`: Includes the web interface for interacting with the application.
+
 `tests/`: Contains unit tests to verify the functionality of the code.
+
 `console.py`: A command-line interface (CLI) for managing the application.
+
 `README.md`: This file.
+
 ## Authors
 - OYEKUNLE DANIEL
 - MARZOUQ ADEBAYO
