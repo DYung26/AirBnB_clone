@@ -6,8 +6,7 @@ AirBnB Clone Command Interpreter - This is the foundational command interpreter 
 ## Repository Structure
 The repository is organized as follows:
 
-`models/`: Contains Python classes representing different data models (e.g., User, Place, Review).
-
+`models/`: Contains Python classes representing different data models (e.g., User, Place, Review).  
 `views/`: Includes the web interface for interacting with the application.  
 `tests/`: Contains unit tests to verify the functionality of the code.  
 `console.py`: A command-line interface (CLI) for managing the application.  
@@ -26,12 +25,21 @@ cd AirBnB_clone
 ```
 - Run the CLI:
 ```
-# For Python 2
+# Python 2
 python console.py
 ```
 ```
-# For Python 3
+# Python 3
 python3 console.py
+```
+
+## Testing
+To run the tests, use the following command:
+```bash
+# Python 2
+python -m unittest discover tests
+# Python3
+python -m unittest discover tests
 ```
 
 ## Authors
@@ -39,4 +47,4 @@ python3 console.py
 - MARZOUQ ADEBAYO
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is currently not explicitly licensed. See the [License](#license) section for more details.
