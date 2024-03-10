@@ -32,6 +32,24 @@ python console.py
 python3 console.py
 ```
 
+## Usage
+The CLI provides various commands to interact with AirBnB objects. Some common commands include:
+
+* `create`: Create a new instance of an AirBnB object.
+* `show`: Display details of a specific AirBnB object.
+* `update`: Update attributes of an existing AirBnB object.
+* `destroy`: Delete an instance of an AirBnB object.
+* `all`: Display all instances or instances of a specific class.  
+Example usage:
+```
+# Create a new Place object
+create BaseModel
+
+# Show details of a specific User
+show User <id>
+```
+For a complete list of commands and options, refer to the documentation or run the CLI with the `--help` option.
+
 ## Testing
 To run the tests, use the following command:
 ```
@@ -44,6 +62,7 @@ python -m unittest discover tests
 ```
 
 ## Contributing
+If you would like to contribute to the development of the AirBnB clone, follow these steps:
 1. Fork the repository.
 2. Create a new branch for your feature: `git checkout -b feature/new-feature`
 3. Commit your changes: `git commit -am 'Add new feature'`
