@@ -1428,11 +1428,11 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create BaseModel")
             testId = output.getvalue().strip()
-        print("Before update:", storage.all()["BaseModel.{}".format(testId)].__dict__)
+        # print("Before update:", storage.all()["BaseModel.{}".format(testId)].__dict__)
         testCmd = "update BaseModel {} attr_name attr_value".format(testId)
         # testCmd += # "{'attr_name': 'attr_value'})"
         HBNBCommand().onecmd(testCmd)
-        print("After update:", storage.all()["BaseModel.{}".format(testId)].__dict__)
+        # print("After update:", storage.all()["BaseModel.{}".format(testId)].__dict__)
         test_dict = storage.all()["BaseModel.{}".format(testId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
 
