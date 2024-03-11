@@ -1075,7 +1075,8 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create User"))
             testId = output.getvalue().strip()
-            testCmd = "User.update({})".format(testId)
+            testCmd = "update User {}".format(testId)
+            # "User.update({})".format(testId)
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(testCmd))
             self.assertEqual(correct, output.getvalue().strip())
