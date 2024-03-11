@@ -996,25 +996,25 @@ class TestHBNBCommand_update(unittest.TestCase):
     def test_update_invalid_id_dot_notation(self):
         correct = "** no instance found **"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("BaseModel.update(1)"))
+            self.assertFalse(HBNBCommand().onecmd("BaseModel.update"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("User.update(1)"))
+            self.assertFalse(HBNBCommand().onecmd("User.update"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("State.update(1)"))
+            self.assertFalse(HBNBCommand().onecmd("State.update"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("City.update(1)"))
+            self.assertFalse(HBNBCommand().onecmd("City.update"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("Amenity.update(1)"))
+            self.assertFalse(HBNBCommand().onecmd("Amenity.update"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("Place.update(1)"))
+            self.assertFalse(HBNBCommand().onecmd("Place.update"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("Review.update(1)"))
+            self.assertFalse(HBNBCommand().onecmd("Review.update"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_update_missing_attr_name_space_notation(self):
