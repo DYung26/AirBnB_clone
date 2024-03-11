@@ -158,7 +158,7 @@ class TestHBNBCommand_create(unittest.TestCase):
     def test_create_invalid_syntax(self):
         correct = "*** Unknown syntax: MyModel.create()"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("MyModel.create()"))
+            self.assertFalse(HBNBCommand().onecmd("MyModel.create"))
             self.assertEqual(correct, output.getvalue().strip())
         correct = "*** Unknown syntax: BaseModel.create()"
         with patch("sys.stdout", new=StringIO()) as output:
