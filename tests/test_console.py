@@ -433,7 +433,7 @@ class TestHBNBCommand_show(unittest.TestCase):
             testID = output.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as output:
             obj = storage.all()["User.{}".format(testID)]
-            command = "User.show({})".format(testID)
+            command = "show User {}".format(testID) # "User.show({})"
             self.assertFalse(HBNBCommand().onecmd(command))
             self.assertEqual(obj.__str__(), output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
