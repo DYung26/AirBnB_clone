@@ -1429,7 +1429,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             HBNBCommand().onecmd("create BaseModel")
             testId = output.getvalue().strip()
         print("Before update:", storage.all()["BaseModel.{}".format(testId)].__dict__)
-        testCmd = "Update BaseModel {} attr_name attr_value".format(testId)
+        testCmd = "update BaseModel {} attr_name attr_value".format(testId)
         # testCmd += # "{'attr_name': 'attr_value'})"
         HBNBCommand().onecmd(testCmd)
         print("After update:", storage.all()["BaseModel.{}".format(testId)].__dict__)
