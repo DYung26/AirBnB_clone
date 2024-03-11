@@ -24,8 +24,8 @@ class BaseModel:
         """
         if not kwargs or len(kwargs) == 0:
             self.id = str(uuid4())
-            self.created_at = datetime.today()
-            self.updated_at = datetime.today()
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
             storage.new(self)
         else:
             for key, value in kwargs.items():
@@ -55,7 +55,7 @@ class BaseModel:
     def save(self):
         """ Updates the 'updated_at' attribute with the current date and time.
         """
-        self.updated_at = datetime.today()
+        self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
