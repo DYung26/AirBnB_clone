@@ -450,7 +450,7 @@ class TestHBNBCommand_show(unittest.TestCase):
             testID = output.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as output:
             obj = storage.all()["Place.{}".format(testID)]
-            command = "Place.show({})".format(testID)
+            command = "show Place {}".format(testID) # "Place.show({})"
             self.assertFalse(HBNBCommand().onecmd(command))
             self.assertEqual(obj.__str__(), output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
@@ -458,7 +458,7 @@ class TestHBNBCommand_show(unittest.TestCase):
             testID = output.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as output:
             obj = storage.all()["City.{}".format(testID)]
-            command = "City.show({})".format(testID)
+            command = "show City {}".format(testID)
             self.assertFalse(HBNBCommand().onecmd(command))
             self.assertEqual(obj.__str__(), output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
@@ -466,7 +466,7 @@ class TestHBNBCommand_show(unittest.TestCase):
             testID = output.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as output:
             obj = storage.all()["Amenity.{}".format(testID)]
-            command = "Amenity.show({})".format(testID)
+            command = "show Amenity {}".format(testID)
             self.assertFalse(HBNBCommand().onecmd(command))
             self.assertEqual(obj.__str__(), output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
@@ -474,7 +474,7 @@ class TestHBNBCommand_show(unittest.TestCase):
             testID = output.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as output:
             obj = storage.all()["Review.{}".format(testID)]
-            command = "Review.show({})".format(testID)
+            command = "show Review {}".format(testID)
             self.assertFalse(HBNBCommand().onecmd(command))
             self.assertEqual(obj.__str__(), output.getvalue().strip())
 
