@@ -1,2 +1,6 @@
+generate-authors.sh
+.console.py.swp
+.test_console.py.swp
+.vscode/
 __pycache__
 file.json
