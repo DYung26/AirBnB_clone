@@ -1298,7 +1298,8 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create City")
             tId = output.getvalue().strip()
-        testCmd = "City.update({}, attr_name, 'attr_value')".format(tId)
+        testCmd = "update City {} attr_name attr_value"
+        # "City.update({}, attr_name, 'attr_value')".format(tId)
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["City.{}".format(tId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
