@@ -1337,7 +1337,8 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create Place")
             tId = output.getvalue().strip()
-        testCmd = "Place.update({}, max_guest, 98)".format(tId)
+        testCmd = "update Place max_guest 98".format(tId) 
+        # "Place.update({}, max_guest, 98)".format(tId)
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["Place.{}".format(tId)].__dict__
         self.assertEqual(98, test_dict["max_guest"])
@@ -1355,7 +1356,7 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create Place")
             tId = output.getvalue().strip()
-        testCmd = "Place.update({}, latitude, 7.2)".format(tId)
+        testCmd = "update Place {} latitude 7.2".format(tId) # "Place.update({}, latitude, 7.2)".format(tId)
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["Place.{}".format(tId)].__dict__
         self.assertEqual(7.2, test_dict["latitude"])
@@ -1495,7 +1496,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             HBNBCommand().onecmd("create Place")
             testId = output.getvalue().strip()
         testCmd = "update Place {} ".format(testId)
-        testCmd += "{'max_guest': 98})"
+        testCmd += "max_guest 98"
         HBNBCommand().onecmd(testCmd)
         test_dict = storage.all()["Place.{}".format(testId)].__dict__
         self.assertEqual(98, test_dict["max_guest"])
@@ -1515,7 +1516,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             HBNBCommand().onecmd("create Place")
             testId = output.getvalue().strip()
         testCmd = "update Place {} ".format(testId)
-        testCmd += "{'latitude': 9.8})"
+        testCmd += "latitude 9.8"
         HBNBCommand().onecmd(testCmd)
         test_dict = storage.all()["Place.{}".format(testId)].__dict__
         self.assertEqual(9.8, test_dict["latitude"])
