@@ -41,8 +41,7 @@ class FileStorage:
         """
         Saves the objects in the storage to the JSON file.
         """
-        obj_copy = self.__objects.copy()
-        to_dump = {key: value.to_dict() for key, value in obj_copy.items()}
+        to_dump = {key: value.to_dict() for key, value in self.__objects.items()}
         with open(self.__file_path, mode="w", encoding="utf-8") as f:
             f.write(json.dumps(to_dump))
 
