@@ -46,7 +46,7 @@ class TestHBNBCommand_help(unittest.TestCase):
 
     def test_help_create(self):
         h = ("Creates a new model instance of the class passed as arg\n\n"
-             "            Usage:"
+             "            Usage:\n"
              "                `create <ModelName>`")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help create"))
@@ -69,7 +69,7 @@ class TestHBNBCommand_help(unittest.TestCase):
         h = ("do_destroy deletes a model instance based on class name and ID.\n\n"
              "        Usage: `destroy <ModelName> <ModelId>`\n"
              "        Args:\n"
-             "        line (str): model name and model ID.")
+             "            line (str): model name and model ID.")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help destroy"))
             self.assertEqual(h, output.getvalue().strip())
@@ -108,7 +108,7 @@ class TestHBNBCommand_help(unittest.TestCase):
     def test_help(self):
         h = ("\nDocumented commands (type help <topic>):\n"
              "========================================\n"
-             "EOF  all  count  create  destroy  dict_update help  quit  show  update")
+             "EOF  all  count  create  destroy  dict_update  help  quit  show  update")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help"))
             self.assertEqual(h, output.getvalue().strip())
