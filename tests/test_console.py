@@ -93,7 +93,7 @@ class TestHBNBCommand_help(unittest.TestCase):
              "            Usage: update <ModelName> <ModelId> <attribute_name>\n"
              "            <attribute_value>\n"
              "        Args:\n"
-             "            line (str): model name, model id, attribute name, attribute value\n")
+             "            line (str): model name, model id, attribute name, attribute value")
         # "Update a class instance of a given id by adding or updating\n   "
         # "     a given attribute key/value pair or dictionary.")
         # or"
