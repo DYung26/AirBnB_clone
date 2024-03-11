@@ -1401,7 +1401,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             HBNBCommand().onecmd("create Place")
             testId = output.getvalue().strip()
         testCmd = "update Place {} ".format(testId)
-        testCmd += "{'attr_name': 'attr_value'}"
+        testCmd += "attr_name attr_value"
         HBNBCommand().onecmd(testCmd)
         test_dict = storage.all()["Place.{}".format(testId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
@@ -1410,7 +1410,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             HBNBCommand().onecmd("create Amenity")
             testId = output.getvalue().strip()
         testCmd = "update Amenity {} ".format(testId)
-        testCmd += "{'attr_name': 'attr_value'}"
+        testCmd += "attr_name attr_value"
         HBNBCommand().onecmd(testCmd)
         test_dict = storage.all()["Amenity.{}".format(testId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
@@ -1419,7 +1419,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             HBNBCommand().onecmd("create Review")
             testId = output.getvalue().strip()
         testCmd = "update Review {} ".format(testId)
-        testCmd += "{'attr_name': 'attr_value'}"
+        testCmd += "attr_name attr_value"
         HBNBCommand().onecmd(testCmd)
         test_dict = storage.all()["Review.{}".format(testId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
