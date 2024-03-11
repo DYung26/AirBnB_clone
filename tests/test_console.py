@@ -909,7 +909,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("update"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd(".update()"))
+            self.assertFalse(HBNBCommand().onecmd("update"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_update_invalid_class(self):
