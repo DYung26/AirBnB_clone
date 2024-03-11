@@ -106,7 +106,8 @@ class TestHBNBCommand_help(unittest.TestCase):
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help(self):
-        h = ("\nDocumented commands (type help <topic>):\n"
+        h = (""
+             "Documented commands (type help <topic>):\n"
              "========================================\n"
              "EOF  all  count  create  destroy  dict_update  help  quit  show  update")
         with patch("sys.stdout", new=StringIO()) as output:
