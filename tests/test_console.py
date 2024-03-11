@@ -1325,7 +1325,7 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create Review")
             tId = output.getvalue().strip()
-        testCmd = "update Review attr_name attr_value".format(tId)
+        testCmd = "update Review {} attr_name attr_value".format(tId)
         # "Review.update({}, attr_name, 'attr_value')".format(tId)
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["Review.{}".format(tId)].__dict__
