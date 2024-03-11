@@ -44,13 +44,6 @@ class FileStorage:
         to_dump = {key: value.to_dict() for key, value in self.__objects.items()}
         with open(self.__file_path, mode="w", encoding="utf-8") as f:
             f.write(json.dumps(to_dump))
-        for key, value in self.__objects.items():
-            if type(value.created_at) is str:
-                value.created_at = datetime.strptime(
-                    value.created_at, '%Y-%m-%dT%H:%M:%S.%f')
-            if type(value.updated_at) is str:
-                value.updated_at = datetime.strptime(
-                    value.updated_at, '%Y-%m-%dT%H:%M:%S.%f')
 
     def reload(self):
         """
