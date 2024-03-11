@@ -225,7 +225,8 @@ class TestConsole(unittest.TestCase):
             self.console.onecmd('create BaseModel')
         obj_id = self.held_output.getvalue().strip()
         with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd(f'update BaseModel {obj_id} name \'{"NewName"}\'')
+            self.console.onecmd(f'update BaseModel {obj_id} \
+            \'name {"NewName"}')
         output = self.held_output.getvalue().strip()
         self.assertEqual(output, "")
 
@@ -237,7 +238,8 @@ class TestConsole(unittest.TestCase):
             self.console.onecmd('create BaseModel')
         obj_id = self.held_output.getvalue().strip()
         with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd(f'dict_update BaseModel {obj_id} dict_attribute invalid_json')
+            self.console.onecmd(f'dict_update BaseModel {obj_id} \
+            \'dict_attribute invalid_json')
         output = self.held_output.getvalue().strip()
         self.assertEqual(output, "** invalid JSON **")
 
@@ -249,7 +251,8 @@ class TestConsole(unittest.TestCase):
             self.console.onecmd('create BaseModel')
         obj_id = self.held_output.getvalue().strip()
         with patch('sys.stdout', new=self.held_output):
-            self.console.onecmd(f'dict_update BaseModel {obj_id} dict_attribute \'{"{"key": "value"}"}\'')
+            self.console.onecmd(f'dict_update BaseModel {obj_id} \
+            \'dict_attribute \'{"{"key": "value"}"}\'')
         output = self.held_output.getvalue().strip()
         updated_obj = storage.all()["BaseModel." + obj_id]
         self.assertEqual(updated_obj.dict_attribute, {"key": "value"})
