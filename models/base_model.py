@@ -56,7 +56,6 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         storage.save()
-        return "OK"
 
     def to_dict(self):
         """ Converts the BaseModel instance to a dictionary.
