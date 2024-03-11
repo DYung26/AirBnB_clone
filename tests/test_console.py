@@ -792,7 +792,7 @@ class TestHBNBCommand_all(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("create Amenity"))
             self.assertFalse(HBNBCommand().onecmd("create Review"))
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("all()"))
+            self.assertFalse(HBNBCommand().onecmd("all"))
             self.assertIn("BaseModel", output.getvalue().strip())
             self.assertIn("User", output.getvalue().strip())
             self.assertIn("State", output.getvalue().strip())
