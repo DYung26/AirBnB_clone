@@ -39,7 +39,7 @@ class TestHBNBCommand_help(unittest.TestCase):
     Unittests for testing help messages of the HBNB command interpreter.
     """
     def test_help_quit(self):
-        h = "Quit command to exit the program."
+        h = "Quit command to exit the program"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help quit"))
             self.assertEqual(h, output.getvalue().strip())
@@ -58,9 +58,8 @@ class TestHBNBCommand_help(unittest.TestCase):
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_show(self):
-        h = ("Usage: show <class> <id> or <class>.show(<id>)\n        "
-             "Display the string representation of a class instance of"
-             " a given id.")
+        h = ("Show instance based on class name and id\n\n"
+             "            Usage: show <ClassName> <InstanceID>")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help show"))
             self.assertEqual(h, output.getvalue().strip())
