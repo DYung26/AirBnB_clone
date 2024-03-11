@@ -997,7 +997,7 @@ class TestHBNBCommand_update(unittest.TestCase):
     def test_update_invalid_id_dot_notation(self):
         correct = "** no instance found **"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("BaseModel.update"))
+            self.assertFalse(HBNBCommand().onecmd("update BaseModel 1"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("User.update"))
