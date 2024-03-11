@@ -90,7 +90,7 @@ class TestHBNBCommand_help(unittest.TestCase):
 
     def test_help_update(self):
         h = ("update updates a model instance\n\n"
-             "            Usage: update <ModelName> <ModelId> <attribute_name>
+             "            Usage: update <ModelName> <ModelId> <attribute_name>\n"
              "            <attribute_value>\n"
              "        Args:\n"
              "            line (str): model name, model id, attribute name, attribute value\n")
