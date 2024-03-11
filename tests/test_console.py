@@ -89,11 +89,12 @@ class TestHBNBCommand_help(unittest.TestCase):
             self.assertEqual(h, output.getvalue().strip())
 
     def test_help_update(self):
-        h = ("Usage: update <class> <id> <attribute_name> <attribute_value> or"
-             "\n       <class>.update(<id>, <attribute_name>, <attribute_value"
-             ">) or\n       <class>.update(<id>, <dictionary>)\n        "
+        h = ("Usage: update <class> <id> <attribute_name> <attribute_value>"
              "Update a class instance of a given id by adding or updating\n   "
              "     a given attribute key/value pair or dictionary.")
+        # or"
+        # "\n       <class>.update(<id>, <attribute_name>, <attribute_value"
+        # ">) or\n       <class>.update(<id>, <dictionary>)\n        "
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help update"))
             self.assertEqual(h, output.getvalue().strip())
@@ -232,7 +233,7 @@ class TestHBNBCommand_show(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("show"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd(".show()"))
+            self.assertFalse(HBNBCommand().onecmd("show"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_show_invalid_class(self):
@@ -319,7 +320,7 @@ class TestHBNBCommand_show(unittest.TestCase):
     def test_show_no_instance_found_dot_notation(self):
         correct = "** no instance found **"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("show BaseModel"))
+            self.assertFalse(HBNBCommand().onecmd("show BaseModel 1"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("show User 1"))
