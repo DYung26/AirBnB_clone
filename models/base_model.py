@@ -22,7 +22,7 @@ class BaseModel:
             arg (tuple): arguments
             kwargs (dict): keywords arguments
         """
-        if len(kwargs) == 0:
+        if not kwargs or len(kwargs) == 0:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
