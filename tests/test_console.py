@@ -22,8 +22,9 @@ from unittest.mock import patch
 
 
 class TestHBNBCommand_prompting(unittest.TestCase):
-    """Unittests for testing prompting of the HBNB command interpreter."""
-
+    """
+    Unittests for testing prompting of the HBNB command interpreter.
+    """
     def test_prompt_string(self):
         self.assertEqual("(hbnb) ", HBNBCommand.prompt)
 
@@ -34,8 +35,9 @@ class TestHBNBCommand_prompting(unittest.TestCase):
 
 
 class TestHBNBCommand_help(unittest.TestCase):
-    """Unittests for testing help messages of the HBNB command interpreter."""
-
+    """
+    Unittests for testing help messages of the HBNB command interpreter.
+    """
     def test_help_quit(self):
         h = "Quit command to exit the program."
         with patch("sys.stdout", new=StringIO()) as output:
@@ -106,8 +108,9 @@ class TestHBNBCommand_help(unittest.TestCase):
 
 
 class TestHBNBCommand_exit(unittest.TestCase):
-    """Unittests for testing exiting from the HBNB command interpreter."""
-
+    """
+    Unittests for testing exiting from the HBNB command interpreter.
+    """
     def test_quit_exits(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertTrue(HBNBCommand().onecmd("quit"))
@@ -118,8 +121,9 @@ class TestHBNBCommand_exit(unittest.TestCase):
 
 
 class TestHBNBCommand_create(unittest.TestCase):
-    """Unittests for testing create from the HBNB command interpreter."""
-
+    """
+    Unittests for testing create from the HBNB command interpreter.
+    """
     @classmethod
     def setUp(self):
         try:
@@ -200,8 +204,9 @@ class TestHBNBCommand_create(unittest.TestCase):
 
 
 class TestHBNBCommand_show(unittest.TestCase):
-    """Unittests for testing show from the HBNB command interpreter"""
-
+    """
+    Unittests for testing show from the HBNB command interpreter
+    """
     @classmethod
     def setUp(self):
         try:
@@ -394,6 +399,26 @@ class TestHBNBCommand_show(unittest.TestCase):
             self.assertEqual(obj.__str__(), output.getvalue().strip())
 
     def test_show_objects_space_notation(self):
+        """
+        Test the 'show' command for various model objects using
+        space notation.
+
+        This test method checks the functionality of the 'show' command for
+        different model objects, creating instances and verifying that the
+        'show' command displays the correct string representation of the
+        objects.
+
+        The tested model objects include 'BaseModel', 'User', 'State', and
+        'Place'.
+        For each object, a new instance is created, and the 'show'
+        command is executed with the corresponding model name and
+        instance ID in space notation.
+        The method then compares the output of the 'show' command with
+        the expected string representation of the created object.
+
+        Note: This method is incomplete and should be extended to cover
+        all relevant model objects and additional test cases.
+        """
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
             testID = output.getvalue().strip()
@@ -707,8 +732,9 @@ class TestHBNBCommand_destroy(unittest.TestCase):
 
 
 class TestHBNBCommand_all(unittest.TestCase):
-    """Unittests for testing all of the HBNB command interpreter."""
-
+    """
+    Unittests for testing all of the HBNB command interpreter.
+    """
     @classmethod
     def setUp(self):
         try:
@@ -853,8 +879,9 @@ class TestHBNBCommand_all(unittest.TestCase):
 
 
 class TestHBNBCommand_update(unittest.TestCase):
-    """Unittests for testing update from the HBNB command interpreter."""
-
+    """
+    Unittests for testing update from the HBNB command interpreter.
+    """
     @classmethod
     def setUp(self):
         try:
@@ -1186,7 +1213,8 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create BaseModel")
             testId = output.getvalue().strip()
-        testCmd = "update BaseModel {} attr_name 'attr_value'".format(testId)
+        testCmd = "update BaseModel {} attr_name 'attr_value\
+        \''".format(testId)
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["BaseModel.{}".format(testId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
@@ -1502,8 +1530,9 @@ class TestHBNBCommand_update(unittest.TestCase):
 
 
 class TestHBNBCommand_count(unittest.TestCase):
-    """Unittests for testing count method of HBNB comand interpreter."""
-
+    """
+    Unittests for testing count method of HBNB comand interpreter.
+    """
     @classmethod
     def setUp(self):
         try:
