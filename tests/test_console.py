@@ -158,7 +158,7 @@ class TestHBNBCommand_create(unittest.TestCase):
     def test_create_invalid_syntax(self):
         correct = "** class doesn't exist **"
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("MyModel.create()"))
+            self.assertFalse(HBNBCommand().onecmd("MyModel.create"))
             self.assertEqual(correct, output.getvalue().strip())
         correct = "*** Unknown syntax: BaseModel.purge()"
         with patch("sys.stdout", new=StringIO()) as output:
@@ -909,7 +909,7 @@ class TestHBNBCommand_update(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("update"))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd(".update()"))
+            self.assertFalse(HBNBCommand().onecmd("update"))
             self.assertEqual(correct, output.getvalue().strip())
 
     def test_update_invalid_class(self):
@@ -1165,7 +1165,8 @@ class TestHBNBCommand_update(unittest.TestCase):
             HBNBCommand().onecmd("create BaseModel")
             testId = output.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as output:
-            testCmd = "BaseModel.update({}, attr_name)".format(testId)
+            testCmd = "update BaseModel {} attr_name".format(testId)
+            # "BaseModel.update({}, attr_name)".format(testId)
             self.assertFalse(HBNBCommand().onecmd(testCmd))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
@@ -1215,8 +1216,7 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create BaseModel")
             testId = output.getvalue().strip()
-        testCmd = "update BaseModel {} attr_name 'attr_value\
-        \''".format(testId)
+        testCmd = "update BaseModel {} attr_name attr_value".format(testId)
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["BaseModel.{}".format(testId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
@@ -1224,7 +1224,7 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create User")
             testId = output.getvalue().strip()
-        testCmd = "update User {} attr_name 'attr_value'".format(testId)
+        testCmd = "update User {} attr_name attr_value".format(testId)
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["User.{}".format(testId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
@@ -1232,7 +1232,7 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create State")
             testId = output.getvalue().strip()
-        testCmd = "update State {} attr_name 'attr_value'".format(testId)
+        testCmd = "update State {} attr_name attr_value".format(testId)
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["State.{}".format(testId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
