@@ -34,12 +34,11 @@ class BaseModel:
                 if key == 'created_at':
                     setattr(self, 'created_at', datetime.strptime(
                         value, '%Y-%m-%dT%H:%M:%S.%f'))
-                    continue
-                if key == 'updated_at':
+                elif key == 'updated_at':
                     setattr(self, 'updated_at', datetime.strptime(
                         value, '%Y-%m-%dT%H:%M:%S.%f'))
-                    continue
-                setattr(self, key, value)
+                else:
+                    setattr(self, key, value)
 
     def __str__(self):
         """ Returns a user-friendly string representation of the BaseModel
