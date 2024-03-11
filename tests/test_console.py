@@ -1209,7 +1209,8 @@ class TestHBNBCommand_update(unittest.TestCase):
             HBNBCommand().onecmd("create Place")
             testId = output.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as output:
-            testCmd = "Place.update({}, attr_name)".format(testId)
+            testCmd = "update Place {} attr_name".format(testId)
+            # "Place.update({}, attr_name)".format(testId)
             self.assertFalse(HBNBCommand().onecmd(testCmd))
             self.assertEqual(correct, output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
