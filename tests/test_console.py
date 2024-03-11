@@ -1271,7 +1271,8 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create BaseModel")
             tId = output.getvalue().strip()
-        testCmd = "BaseModel.update({}, attr_name, 'attr_value')".format(tId)
+        testCmd = "update BaseModel {} attr_name attr_value".format(tId)
+        # "BaseModel.update({}, attr_name, 'attr_value')".format(tId)
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["BaseModel.{}".format(tId)].__dict__
         self.assertEqual("attr_value", test_dict["attr_name"])
@@ -1337,7 +1338,7 @@ class TestHBNBCommand_update(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as output:
             HBNBCommand().onecmd("create Place")
             tId = output.getvalue().strip()
-        testCmd = "update Place max_guest 98".format(tId) 
+        testCmd = "update Place {} max_guest 98".format(tId) 
         # "Place.update({}, max_guest, 98)".format(tId)
         self.assertFalse(HBNBCommand().onecmd(testCmd))
         test_dict = storage.all()["Place.{}".format(tId)].__dict__
