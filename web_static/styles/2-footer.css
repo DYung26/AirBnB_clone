@@ -1,0 +1,14 @@
+/* 2-footer.css */
+
+footer {
+    position:absolute;
+    background-color: #00FF00;
+    height: 60px;
+    width: 100%;
+    bottom:0;
+}
+footer p.text {
+    justify-content:center;
+    align-items:center;
+    display: flex;
+}
