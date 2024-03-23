@@ -1,0 +1,15 @@
+/* 3-footer.css */
+
+footer {
+    position:absolute;
+    background-color: white;
+    height: 60px;
+    width: 100%;
+    bottom:0;
+    border-top: 1px solid #CCCCCC;
+}
+footer p.text {
+    justify-content:center;
+    align-items:center;
+    display: flex;
+}
