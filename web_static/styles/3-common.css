@@ -1,0 +1,12 @@
+/* 2-common.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: #484848;
+    font-size: 14px;
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    /*'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+    /*  */
+}
